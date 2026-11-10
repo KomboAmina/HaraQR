@@ -14,33 +14,31 @@
     </p>
 
     <!--form-->
-    <form method="get" id="fmgenerateqr" onsubmit="generateQRCode()">
+    <form method="get" id="fmgenerateqr">
       <input
         type="text"
         name="txtinput"
         id="txtinput"
         placeholder="enter text or URL"
+        onkeyup="generateQRCode()"
         required
       />
-      <button type="submit">generate</button>
     </form>
     <!--form-->
 
-    <section id="qr-output"></section>
+    <section id="qr-output" class="format lg:format_lg">
+      <p class="text-center text-body">output here</p>
+      >
+    </section>
   </div>
 </section>
 
 <script src="../public/flowbite.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
+  function generateQRCode() {
+    var qrcontent = document.getElementById("txtinput").value;
 
-  function generateQRCode(Element e){
-
-    e.preventDefault();
-
-    var qrcontent = docunent.getElementById('txtinput');
-
-    document.getElementById('qr-output').innerHTML(qrcontent+"");
-
-  };
+    document.getElementById("qr-output").innerHTML = qrcontent + "";
+  }
 </script>
