@@ -10,9 +10,37 @@
       Welcome to HaraQR
     </h1>
     <p class="mb-8 text-base font-normal text-body md:text-xl">
-      Genere a QR code using this form.
+      Genere a QR code here. Copy it to your clipboard.
     </p>
+
+    <!--form-->
+    <form method="get" id="fmgenerateqr" onsubmit="generateQRCode()">
+      <input
+        type="text"
+        name="txtinput"
+        id="txtinput"
+        placeholder="enter text or URL"
+        required
+      />
+      <button type="submit">generate</button>
+    </form>
+    <!--form-->
+
+    <section id="qr-output"></section>
   </div>
 </section>
 
 <script src="../public/flowbite.min.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+
+  function generateQRCode(Element e){
+
+    e.preventDefault();
+
+    var qrcontent = docunent.getElementById('txtinput');
+
+    document.getElementById('qr-output').innerHTML(qrcontent+"");
+
+  };
+</script>
