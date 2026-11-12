@@ -23,21 +23,47 @@
         onkeyup="generateQRCode()"
         required
       />
+      <button type="clear">Clear</button>
     </form>
     <!--form-->
-
+    <div id="qr-label"></div>
     <section id="qr-output" class="format lg:format_lg">
       <p class="text-center text-body">output here</p>
     </section>
+
+    (accordion here: copy to clipboard, download image: PNG, JPEG, SVG, WEBP)
   </div>
 </section>
 
 <script src="../public/flowbite.min.js" type="text/javascript"></script>
+
+<script src="../public/qrcodejs/jquery.min.js" type="text/javascript"></script>
+
+<script src="../public/qrcodejs/qrcode.min.js" type="text/javascript"></script>
 
 <script type="text/javascript">
   function generateQRCode() {
     var qrcontent = document.getElementById("txtinput").value;
 
     document.getElementById("qr-output").innerHTML = qrcontent + "";
+
+    var qrdiv = document.getElementById("qr-output");
+
+    qrdiv.innerHTML = "";
+
+    if (qrcontent.length <= 1270) {
+      document.getElementById("qr-label").innerHTML = qrcontent;
+
+      var qrCode = new QRCode(qrdiv, {
+        text: qrcontent /*
+        colorDark: "#000000",
+        colorLight: "#FFFFFF",*/,
+        width: 256,
+        height: 256,
+      });
+    } else {
+      document.getElementById("qr-label").innerHTML =
+        "qr code can only generated with less than 1271 characters.";
+    }
   }
 </script>
