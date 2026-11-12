@@ -15,17 +15,25 @@
 
     <!--form-->
     <form method="get" id="fmgenerateqr">
+      <button
+        type="clear"
+        class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none"
+        id="btn-clear"
+      >
+        Clear
+      </button>
       <input
         type="text"
         name="txtinput"
         id="txtinput"
         placeholder="enter text or URL"
         onkeyup="generateQRCode()"
+        class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body"
         required
       />
-      <button type="clear">Clear</button>
     </form>
     <!--form-->
+
     <div id="qr-label"></div>
     <section id="qr-output" class="format lg:format_lg">
       <p class="text-center text-body">output here</p>
