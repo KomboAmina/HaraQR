@@ -5,9 +5,9 @@ function generateQRCode(givenString, divID, labelID){
 
     qrdiv.innerHTML='';
 
-    if(givenString.length<=1270){
+    if(givenString.length<=7089){
 
-        document.getElementById(labelID).innerHTML=givenString;
+        document.getElementById(labelID).innerHTML="<p class='uk-text-bold'>"+givenString+"</p>";
 
         var qrCode= new QRCode(qrdiv, {
             text: givenString,/*
@@ -21,8 +21,24 @@ function generateQRCode(givenString, divID, labelID){
 
     else{
 
-        document.getElementById(labelID).innerHTML="qr code can only generated with less than 1271 characters.";
+        document.getElementById(labelID).innerHTML="<p class='uk-text-danger uk-text-bold'>qr code can only generated with less than 7089 characters.</p>";
 
     }
+
+}
+
+function copyToClipboard(copyContent){
+
+  navigator.clipboard.writeText(copyContent);
+
+  alert("copied to clipboard!");
+
+}
+
+function displayCharacterCount(characterString, labelDiv){
+
+  var labeldiv = document.getElementById(labelDiv);
+
+  labeldiv.innerHTML = characterString.length+ "";
 
 }
