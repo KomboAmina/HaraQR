@@ -43,6 +43,8 @@
 
           <h2>2. View your output.</h2>
 
+          <p class="uk-text-body">Right-click and choose "Copy Image" to save the code to your clipboard.</p>
+
           <section id="qr-output">
             code will appear here.
           </section><hr />
@@ -58,15 +60,16 @@
       <div class="uk-width-1-3">
 
           <div class="uk-margin">
-            <h2>3. Use the image.</h2>
+            <h2>3. Save the image.</h2>
             <ul class="uk-accordion-default" uk-accordion>
-                    <li>
-                    <a class="uk-accordion-title" href="#copy" onclick="initCopyImage();"><span uk-icon="icon: copy"></span> Copy to Clipboard</a>
-                    </li>
-                <li>
-                    <a class="uk-accordion-title" href><span uk-icon="icon: image"></span> Generate PNG <span uk-accordion-icon></a>
+              <li>
+                    <a class="uk-accordion-title" href><span uk-icon="icon: image"></span> Save as PNG <span uk-accordion-icon></a>
                     <div class="uk-accordion-content">
-                        <p>Download PNG file.</p>
+                        <ol>
+                          <li>Right-Click the QR Code</li>
+                          <li>Choose "Save image as"</li>
+                          <li>Choose the save location and/or file name.</li>
+                        </ol>
                     </div>
                 </li>
                 <li>
@@ -79,6 +82,12 @@
                     <a class="uk-accordion-title" href><span uk-icon="icon: image"></span> Generate SVG <span uk-accordion-icon></a>
                     <div class="uk-accordion-content">
                         <p>Download SVG file.</p>
+                    </div>
+                </li>
+                <li>
+                    <a class="uk-accordion-title" href><span uk-icon="icon: image"></span> Generate WEBP <span uk-accordion-icon></a>
+                    <div class="uk-accordion-content">
+                        <p>Download WEBP file.</p>
                     </div>
                 </li>
             </ul>
@@ -108,14 +117,6 @@
     initCharacterCount();
 
     generateQRCode(qrcontent, "qr-output", "qr-label");
-
-  }
-
-  function initCopyImage(){
-
-    var imageContent = document.getElementById("qr-output").innerHTML;
-
-    copyToClipboard(imageContent);
 
   }
 
