@@ -104,9 +104,31 @@
                 </div>
             </li>
             <li id="acc-like">
-                <a class="uk-accordion-title" href><span uk-icon="icon: heart"></span> Like <span uk-accordion-icon></a>
+                <a class="uk-accordion-title" href onclick="generateLikeIntent()"><span uk-icon="icon: heart"></span> Like <span uk-accordion-icon></a>
                 <div class="uk-accordion-content">
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat proident.</p>
+                   <h4>Like</h4>
+
+                     <div class="uk-margin">
+
+                        <label for="txt-like-idurl" class="uk-form-label">Tweet/Post ID</label>
+
+                        <input type="number" name="txt-like-idurl" id="txt-like-idurl" class="uk-input" placeholder="tweet/post URL or ID" value="1234567890" onkeyup="generateLikeIntent();" required/>
+
+                    </div>
+
+                    <div class="uk-margin">
+
+                        <div class="uk-text-block uk-text-bold" id="dv-like-output"></div>
+
+                        <a href="#test" target="_blank" id="btn-like-test" class="uk-text-bold">Test</a> | <a href="#copy" id="btn-like-copy" onclick="initCopyButton('btn-like-copy');" data-val="" class="uk-text-bold">Copy to Clipboard</a>
+
+                    </div>
+
+                    <div class="uk-margin uk-text-right">
+
+                        <button type="clear" class="uk-button uk-button-primary">Clear</button>
+
+                    </div>
                 </div>
             </li>
             <li id="acc-follow">
@@ -162,6 +184,20 @@ function generateRepostIntent(){
     document.getElementById('btn-repost-test').setAttribute('href',postlink);
 
     document.getElementById('btn-repost-copy').setAttribute('data-val',postlink);
+
+}
+
+function generateLikeIntent(){
+
+    var text = document.getElementById("txt-like-idurl").value;
+
+    var postlink = "https://www.x.com/intent/like?tweet_id="+text;
+
+    document.getElementById("dv-like-output").innerHTML = "<p>" + encodeURI(postlink) + "</p>";
+
+    document.getElementById('btn-like-test').setAttribute('href',postlink);
+
+    document.getElementById('btn-like-copy').setAttribute('data-val',postlink);
 
 }
 
