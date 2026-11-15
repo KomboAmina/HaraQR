@@ -19,10 +19,10 @@
         </p>
 
         <ul class="uk-accordion-default" uk-accordion>
-            <li class="uk-open" id="acc-post">
-                <a class="uk-accordion-title"><span uk-icon="icon: pencil"></span> Post <span uk-accordion-icon></a>
+            <li id="acc-post">
+                <a class="uk-accordion-title" onclick="generatePostIntent()"><span uk-icon="icon: pencil"></span> Post <span uk-accordion-icon></a>
                 <div class="uk-accordion-content">
-                    <p>Generate a tweet/post.</p>
+                    <h4>Generate a tweet/post</h4>
 
                     <div class="uk-margin">
 
@@ -36,7 +36,7 @@
 
                         <label for="txt-post-url" class="uk-form-label">URL to Share</label>
 
-                        <input type="url" name="txt-post-url" id="txt-post-url" class="uk-input" placeholder="https://www.example.com" value="https://www.example.com"/>
+                        <input type="url" name="txt-post-url" id="txt-post-url" class="uk-input" placeholder="https://www.example.com" value="https://www.example.com" onkeyup="generatePostIntent();"/>
 
                     </div>
 
@@ -44,7 +44,7 @@
 
                         <label for="txt-post-hashtag" class="uk-form-label">Hashtags</label>
 
-                        <input type="text" name="txt-post-hashtag" id="txt-post-hashtag" class="uk-input" placeholder="comma-separated, without the # symbol" value="browserextension, haraqr, awesome, news"/>
+                        <input type="text" name="txt-post-hashtag" id="txt-post-hashtag" class="uk-input" placeholder="comma-separated, without the # symbol" value="browserextension, haraqr, awesome, news" onkeyup="generatePostIntent();"/>
 
                     </div>
 
@@ -52,14 +52,16 @@
 
                         <label for="txt-post-attribution" class="uk-form-label">Attribution</label>
 
-                        <input type="text" name="txt-post-attribution" id="txt-post-attribution" class="uk-input" placeholder="username without the @"/>
+                        <input type="text" name="txt-post-attribution" id="txt-post-attribution" class="uk-input" placeholder="username without the @" onkeyup="generatePostIntent();"/>
 
                     </div>
 
                     <div class="uk-margin">
 
-                        <div class="uk-block-text uk-text-bold"
+                        <div class="uk-text-block uk-text-bold"
                          id="dv-post-output"></div>
+
+                        <a href="#test" target="_blank" id="btn-post-post-test" class="uk-text-bold">Test</a> | <a href="#copy" id="btn-post-post-copy" onclick="initCopyButton('btn-post-post-copy');" data-val="" class="uk-text-bold">Copy to Clipboard</a>                       
 
                     </div>
 
@@ -72,9 +74,32 @@
                 </div>
             </li>
             <li id="acc-repost">
-                <a class="uk-accordion-title" href><span uk-icon="icon: social"></span> Repost <span uk-accordion-icon></a>
+                <a class="uk-accordion-title" href onclick="generateRepostIntent()"><span uk-icon="icon: social"></span> Repost <span uk-accordion-icon></a>
                 <div class="uk-accordion-content">
-                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor reprehenderit.</p>
+                    <h4>Repost/Retweet</h4>
+
+                     <div class="uk-margin">
+
+                        <label for="txt-repost-idurl" class="uk-form-label">Tweet/Post ID</label>
+
+                        <input type="number" name="txt-repost-idurl" id="txt-repost-idurl" class="uk-input" placeholder="tweet/post URL or ID" value="1234567890" onkeyup="generateRepostIntent();" required/>
+
+                    </div>
+
+                    <div class="uk-margin">
+
+                        <div class="uk-text-block uk-text-bold" id="dv-repost-output"></div>
+
+                        <a href="#test" target="_blank" id="btn-repost-test" class="uk-text-bold">Test</a> | <a href="#copy" id="btn-repost-copy" onclick="initCopyButton('btn-repost-copy');" data-val="" class="uk-text-bold">Copy to Clipboard</a>
+
+                    </div>
+
+                    <div class="uk-margin uk-text-right">
+
+                        <button type="clear" class="uk-button uk-button-primary">Clear</button>
+
+                    </div>
+
                 </div>
             </li>
             <li id="acc-like">
@@ -117,21 +142,31 @@ function generatePostIntent(){
 
     var postlink = "https://www.x.com/intent/tweet?text="+encodeURI(text);
 
-    document.getElementById("dv-post-output").innerHTML = postlink;
+    document.getElementById("dv-post-output").innerHTML = "<p>"+postlink+"</p>";
+
+    document.getElementById('btn-post-post-test').setAttribute('href',postlink);
+
+    document.getElementById('btn-post-post-copy').setAttribute('data-val',postlink);
 
 }
 
-function goToAnchor(anchorID){
+function generateRepostIntent(){
 
-    const element = document.getElementById(anchorID);
+    var text = document.getElementById("txt-repost-idurl").value;
 
-    // Smooth scroll to the element
-    element.scrollIntoView({
-        behavior: "smooth", // "smooth" or "instant" / "auto"
-        block: "start",     // Vertical alignment: "start", "center", "end", or "nearest"
-        inline: "nearest"   // Horizontal alignment: "start", "center", "end", or "nearest"
-    });
+    var postlink = "https://www.x.com/intent/retweet?tweet_id="+text;
 
+    document.getElementById("dv-repost-output").innerHTML = "<p>" + encodeURI(postlink) + "</p>";
+
+    document.getElementById('btn-repost-test').setAttribute('href',postlink);
+
+    document.getElementById('btn-repost-copy').setAttribute('data-val',postlink);
+
+}
+
+function initCopyButton(buttonID){
+
+    copyToClipboard(document.getElementById(buttonID).getAttribute('data-val'));
 
 }
 

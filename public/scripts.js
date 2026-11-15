@@ -1,5 +1,5 @@
 //injecting html pages into their main tab
-function generateQRCode(givenString, divID, labelID){
+function generateQRCode(givenString, divID, labelID, side=256){
 
     var qrdiv=document.getElementById(divID);
 
@@ -13,7 +13,7 @@ function generateQRCode(givenString, divID, labelID){
             text: givenString,/*
             colorDark: "#110B12",
             colorLight: "#D9D3C8",*/
-            width:256,
+            width:side,
             height:256
         });
 
@@ -40,5 +40,31 @@ function displayCharacterCount(characterString, labelDiv){
   var labeldiv = document.getElementById(labelDiv);
 
   labeldiv.innerHTML = characterString.length+ "";
+
+}
+
+function goToAnchor(anchorID){
+
+    const element = document.getElementById(anchorID);
+
+    // Smooth scroll to the element
+    element.scrollIntoView({
+        behavior: "smooth", // "smooth" or "instant" / "auto"
+        block: "start",     // Vertical alignment: "start", "center", "end", or "nearest"
+        inline: "nearest"   // Horizontal alignment: "start", "center", "end", or "nearest"
+    });
+
+
+}
+
+function isValidURL(checkString){
+
+    try{
+        new URL(checkString);
+        return true;
+    }
+    catch(err){
+        return false;
+    }
 
 }
