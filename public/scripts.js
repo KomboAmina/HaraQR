@@ -14,7 +14,7 @@ function generateQRCode(givenString, divID, labelID, side=256){
             colorDark: "#110B12",
             colorLight: "#D9D3C8",*/
             width:side,
-            height:256
+            height:side
         });
 
     }

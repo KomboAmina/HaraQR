@@ -5,6 +5,7 @@
 
  <!-- UIkit JS -->
 <script src="../public/uikit/js/uikit.min.js"></script>
+
 <script src="../public/uikit/js/uikit-icons.min.js"></script>
 
 <section class="uk-margin">
@@ -74,9 +75,9 @@
               <h2>2. View your new link</h2>
               <p class="uk-body-text">Test your generated link by clicking it.</p>
 
-              <div class="uk-margin uk-text-bold" id="dv-output"></div>
+              <div class="uk-margin uk-text-bold uk-text-block" id="dv-email-output"></div>
 
-              <div class="uk-text-bold uk-hidden" id="dv-copy"></div>
+              <div class="uk-hidden" id="dv-copy"></div>
 
               <h2>3. Use the result</h2>
               <p class="uk-body-text">Copy the link, download the QR code.</p>
@@ -84,16 +85,6 @@
               <ul class="uk-accordion-default" uk-accordion>
                 <li>
                   <a href="#" class="uk-accordion-title" onclick="initCopyToClipboard();"><span uk-icon="icon: copy"></span> Copy Link to Clipboard</a>
-                </li>
-                <li>
-                    <a class="uk-accordion-title" href><span uk-icon="icon: image"></span> QR Code<span uk-accordion-icon></a>
-                    <div class="uk-accordion-content">
-                        <p>Download JPEG file.</p>
-
-                        <div id="qr-output"></div>
-
-                        <div id="qr-output-label" class="uk-hidden"></div>
-                    </div>
                 </li>
             </ul>
 
@@ -133,9 +124,7 @@
 
       var outputinner = "<p><a href='" + mailink + "' target='_blank' class='uk-button uk-button-secondary uk-button-large uk-width-1-1'><span uk-icon='mail'></span> Generated Link</a></p><div class='uk-text-block'><p>" + mailink + "</p></div>";
 
-      document.getElementById("dv-output").innerHTML = outputinner;
-
-      generateQRCode(mailink, "qr-output", "qr-output-label");
+      document.getElementById("dv-email-output").innerHTML = outputinner;
 
   }
 
