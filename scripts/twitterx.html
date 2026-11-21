@@ -12,13 +12,6 @@
 
     <div class="uk-padding">
 
-        <p><a href="#" onclick="goToAnchor('acc-post');">Tweet/Post</a> | 
-            <a href="#" onclick="goToAnchor('acc-repost');">Retweet/Repost</a> | 
-            <a href="#" onclick="goToAnchor('acc-like');">Like</a> | 
-            <a href="#" onclick="goToAnchor('acc-follow');">Follow</a> | 
-            <a href="#" onclick="goToAnchor('acc-dm');">DM</a> 
-        </p>
-
         <ul class="uk-accordion-default" uk-accordion>
             <li id="acc-post">
                 <a class="uk-accordion-title" onclick="generatePostIntent()"><span uk-icon="icon: pencil"></span> Tweet/Post <span uk-accordion-icon></a>
@@ -98,7 +91,7 @@
 
                         <label for="txt-repost-idurl" class="uk-form-label">Tweet/Post ID</label>
 
-                        <input type="number" name="txt-repost-idurl" id="txt-repost-idurl" class="uk-input" placeholder="tweet/post URL or ID" value="1234567890" onkeyup="generateRepostIntent();" required/>
+                        <input type="number" name="txt-repost-idurl" id="txt-repost-idurl" class="uk-input" placeholder="tweet/post URL or ID" value="2124027531028517045" onkeyup="generateRepostIntent();" required/>
 
                     </div>
 
@@ -130,7 +123,7 @@
 
                         <label for="txt-like-idurl" class="uk-form-label">Tweet/Post ID</label>
 
-                        <input type="number" name="txt-like-idurl" id="txt-like-idurl" class="uk-input" placeholder="tweet/post URL or ID" value="1234567890" onkeyup="generateLikeIntent();" required/>
+                        <input type="number" name="txt-like-idurl" id="txt-like-idurl" class="uk-input" placeholder="tweet/post URL or ID" value="2124027531028517045" onkeyup="generateLikeIntent();" required/>
 
                     </div>
 
@@ -152,15 +145,90 @@
                 </div>
             </li>
             <li id="acc-follow">
-                <a class="uk-accordion-title" href><span uk-icon="icon: users"></span> Follow <span uk-accordion-icon></a>
+                <a class="uk-accordion-title" href  onclick="generateFollowIntent()"><span uk-icon="icon: users"></span> Follow <span uk-accordion-icon></a>
                 <div class="uk-accordion-content">
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat proident.</p>
+                    <div class="uk-card uk-card-default uk-card-body">
+                       <div class="uk-margin">
+
+                        <label for="txt-follow-idurl" class="uk-form-label">Username without the @</label>
+
+                        <input type="text" name="txt-follow-idurl" id="txt-follow-idurl" class="uk-input" placeholder="eg WholesomeMeme" value="WholesomeMeme" onkeyup="generateFollowIntent();" required/>
+
+                    </div>
+
+                    <div class="uk-margin">
+
+                        <div class="uk-text-block uk-text-bold" id="dv-follow-output"></div>
+
+                        <a href="#test" target="_blank" id="btn-follow-test" class="uk-text-bold">Test</a> | <a href="#copy" id="btn-follow-copy" onclick="initCopyButton('btn-follow-copy');" data-val="" class="uk-text-bold">Copy to Clipboard</a>
+
+                    </div>
+
+                    <div class="uk-margin uk-text-right">
+
+                        <button type="clear" class="uk-button uk-button-primary">Clear</button>
+
+                    </div>
+
+                    </div>
                 </div>
             </li>
             <li id="acc-dm">
-                <a class="uk-accordion-title" href><span uk-icon="icon: comment"></span> DM <span uk-accordion-icon></a>
+                <a class="uk-accordion-title" href onclick="generateDMIntent()"><span uk-icon="icon: comment"></span> DM <span uk-accordion-icon></a>
                 <div class="uk-accordion-content">
-                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat proident.</p>
+                    <div uk-grid>
+
+                        <div class="uk-width-1-2">
+                            <div class="uk-card uk-card-default uk-card-body">
+                                 <div class="uk-margin">
+
+                                    <label for="txt-dm-idurl" class="uk-form-label">Username without the @</label>
+
+                                    <input type="text" name="txt-dm-idurl" id="txt-dm-idurl" class="uk-input" placeholder="eg WholesomeMeme" value="WholesomeMeme" onkeyup="generateDMIntent();" required/>
+
+                                </div>
+
+                                <div class="uk-margin">
+                                    <label for="txt-dm-body" class="uk-form-label">Message Body</label>
+
+                                    <textarea
+                                        name="txt-dm-body"
+                                        id="txt-dm-body"
+                                        class="uk-textarea"
+                                        placeholder="your message body"
+                                        rows="8"
+                                        onkeyup="generateDMIntent()" required
+                                    >This is your DM message. It will generate as you type. Try it.</textarea
+                                    >
+                                </div>
+
+                                
+
+                                <div class="uk-margin uk-text-right">
+
+                                    <button type="clear" class="uk-button uk-button-primary">Clear</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="uk-width-1-2">
+
+                            <div class="uk-card uk-card-default uk-card-body">
+                                <div class="uk-card-title">Preview</div>
+                                <div class="uk-margin">
+
+                                    <div class="uk-text-block uk-text-bold" id="dv-dm-output"></div>
+
+                                    <a href="#test" target="_blank" id="btn-dm-test" class="uk-text-bold">Test</a> | <a href="#copy" id="btn-dm-copy" onclick="initCopyButton('btn-dm-copy');" data-val="" class="uk-text-bold">Copy to Clipboard</a>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                   
                 </div>
             </li>
         </ul>
@@ -183,13 +251,19 @@ function generatePostIntent(){
 
     document.getElementById("dv-post-output").innerHTML = text;
 
-    var postlink = "https://www.x.com/intent/tweet?text="+encodeURI(text);
+    var hashtag = document.getElementById("txt-post-hashtag").value;
+
+    var attribution = document.getElementById("txt-post-attribution").value;
+
+    var postlink = "https://www.x.com/intent/tweet?text="+encodeURI(text)+"&hashtags="+encodeURI(hashtag)+"&via="+attribution;
 
     document.getElementById("dv-post-output").innerHTML = "<p>"+postlink+"</p>";
 
     document.getElementById('btn-post-post-test').setAttribute('href',postlink);
 
     document.getElementById('btn-post-post-copy').setAttribute('data-val',postlink);
+
+    goToAnchor("acc-post");
 
 }
 
@@ -205,6 +279,8 @@ function generateRepostIntent(){
 
     document.getElementById('btn-repost-copy').setAttribute('data-val',postlink);
 
+    goToAnchor("acc-post");
+
 }
 
 function generateLikeIntent(){
@@ -218,6 +294,42 @@ function generateLikeIntent(){
     document.getElementById('btn-like-test').setAttribute('href',postlink);
 
     document.getElementById('btn-like-copy').setAttribute('data-val',postlink);
+
+    goToAnchor("acc-repost");
+
+}
+
+function generateFollowIntent(){
+
+    var text = document.getElementById("txt-follow-idurl").value;
+
+    var postlink = "https://www.x.com/intent/follow?screen_name="+text;
+
+    document.getElementById("dv-follow-output").innerHTML = "<p>" + encodeURI(postlink) + "</p>";
+
+    document.getElementById('btn-follow-test').setAttribute('href',postlink);
+
+    document.getElementById('btn-follow-copy').setAttribute('data-val',postlink);
+
+    goToAnchor("acc-like");
+
+}
+
+function generateDMIntent(){
+
+    var text = document.getElementById("txt-dm-idurl").value;
+
+    var message = document.getElementById("txt-dm-body").value;
+
+    var postlink = "https://x.com/messages/compose?recipient_id="+text+"&text="+encodeURI(message);
+
+    document.getElementById("dv-dm-output").innerHTML = "<p>" + encodeURI(postlink) + "</p>";
+
+    document.getElementById('btn-dm-test').setAttribute('href',postlink);
+
+    document.getElementById('btn-dm-copy').setAttribute('data-val',postlink);
+
+    goToAnchor("acc-follow");
 
 }
 
