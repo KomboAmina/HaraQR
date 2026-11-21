@@ -12,45 +12,47 @@
   <div class="uk-padding">
     <div uk-grid>
       <div class="uk-width-1-3">
-        <div class="uk-margin">
-          <label for="txt-telurl" class="uk-form-label">URL to Share</label>
+        <div class="uk-card uk-card-default uk-card-body">
+          <div class="uk-margin">
+            <label for="txt-telurl" class="uk-form-label">URL to Share</label>
 
-          <input
-            type="url"
-            name="txt-telurl"
-            id="txt-telurl"
-            class="uk-input"
-            placeholder="eg https://www.example.com"
-            onkeyup="createTelegramLink()"
-            required
-            value="https://www.example.com"
-          />
-        </div>
+            <input
+              type="url"
+              name="txt-telurl"
+              id="txt-telurl"
+              class="uk-input"
+              placeholder="eg https://www.example.com"
+              onkeyup="createTelegramLink()"
+              required
+              value="https://www.example.com"
+            />
+          </div>
 
-        <div class="uk-margin">
-          <label for="txt-body" class="uk-form-label">Text (optional)</label>
+          <div class="uk-margin">
+            <label for="txt-body" class="uk-form-label">Text (optional)</label>
 
-          <textarea
-            name="txt-teltext"
-            id="txt-teltext"
-            class="uk-textarea"
-            placeholder="your message body"
-            rows="8"
-            onkeyup="createTelegramLink()"
-          >
+            <textarea
+              name="txt-teltext"
+              id="txt-teltext"
+              class="uk-textarea"
+              placeholder="your message body"
+              rows="8"
+              onkeyup="createTelegramLink()"
+            >
 Generate a Telegram chat link with this form. Use the preview to test your output. It happens as you type. Try it.</textarea
-          >
-        </div>
+            >
+          </div>
 
-        <div class="uk-margin uk-text-right">
-          <button type="clear" class="uk-button uk-button-primary">
-            Clear
-          </button>
+          <div class="uk-margin uk-text-right">
+            <button type="clear" class="uk-button uk-button-primary">
+              Clear
+            </button>
+          </div>
         </div>
       </div>
 
       <div class="uk-width-2-3">
-        <div>
+        <div class="uk-card uk-card-default uk-card-body">
           <div class="uk-card-title uk-margin-bottom">Preview</div>
 
           <div uk-grid>
