@@ -12,8 +12,8 @@
 
     <div class="uk-padding">
 
-        <p><a href="#" onclick="goToAnchor('acc-post');">Post</a> | 
-            <a href="#" onclick="goToAnchor('acc-repost');">Repost</a> | 
+        <p><a href="#" onclick="goToAnchor('acc-post');">Tweet/Post</a> | 
+            <a href="#" onclick="goToAnchor('acc-repost');">Retweet/Repost</a> | 
             <a href="#" onclick="goToAnchor('acc-like');">Like</a> | 
             <a href="#" onclick="goToAnchor('acc-follow');">Follow</a> | 
             <a href="#" onclick="goToAnchor('acc-dm');">DM</a> 
@@ -21,7 +21,7 @@
 
         <ul class="uk-accordion-default" uk-accordion>
             <li id="acc-post">
-                <a class="uk-accordion-title" onclick="generatePostIntent()"><span uk-icon="icon: pencil"></span> Post <span uk-accordion-icon></a>
+                <a class="uk-accordion-title" onclick="generatePostIntent()"><span uk-icon="icon: pencil"></span> Tweet/Post <span uk-accordion-icon></a>
                 <div class="uk-accordion-content">
 
                     <div uk-grid>
@@ -89,11 +89,12 @@
                 </div>
             </li>
             <li id="acc-repost">
-                <a class="uk-accordion-title" href onclick="generateRepostIntent()"><span uk-icon="icon: social"></span> Repost <span uk-accordion-icon></a>
+                <a class="uk-accordion-title" href onclick="generateRepostIntent()"><span uk-icon="icon: social"></span> Retweet/Repost <span uk-accordion-icon></a>
                 <div class="uk-accordion-content">
-                    <h4>Repost/Retweet</h4>
 
-                     <div class="uk-margin">
+                    <div class="uk-card uk-card-default uk-card-body">
+
+                    <div class="uk-margin">
 
                         <label for="txt-repost-idurl" class="uk-form-label">Tweet/Post ID</label>
 
@@ -115,12 +116,15 @@
 
                     </div>
 
+                    </div>
+
                 </div>
             </li>
             <li id="acc-like">
                 <a class="uk-accordion-title" href onclick="generateLikeIntent()"><span uk-icon="icon: heart"></span> Like <span uk-accordion-icon></a>
                 <div class="uk-accordion-content">
-                   <h4>Like</h4>
+
+                    <div class="uk-card uk-card-default uk-card-body">
 
                      <div class="uk-margin">
 
@@ -141,6 +145,8 @@
                     <div class="uk-margin uk-text-right">
 
                         <button type="clear" class="uk-button uk-button-primary">Clear</button>
+
+                    </div>
 
                     </div>
                 </div>
