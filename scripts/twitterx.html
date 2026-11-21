@@ -23,13 +23,17 @@
             <li id="acc-post">
                 <a class="uk-accordion-title" onclick="generatePostIntent()"><span uk-icon="icon: pencil"></span> Post <span uk-accordion-icon></a>
                 <div class="uk-accordion-content">
-                    <h4>Generate a tweet/post</h4>
 
-                    <div class="uk-margin">
+                    <div uk-grid>
+                        <div class="uk-width-1-2">
+
+                            <div class="uk-card uk-card-default uk-card-body">
+
+                                <div class="uk-margin">
 
                         <label for="txt-post-post" class="uk-form-label">Message Text</label>
 
-                        <textarea id="txt-post-post" name="txt-post-post" class="uk-textarea" rows="4" maxlength="280" onkeyup="generatePostIntent();" required>I have found a browser extension that makes my life much easier.</textarea>
+                        <textarea id="txt-post-post" name="txt-post-post" class="uk-textarea" rows="4" maxlength="280" onkeyup="generatePostIntent();" required>Generate a Post intent for Twitter/X. Test it with the preview. It happens automatically as you type. Try it.</textarea>
 
                     </div>
 
@@ -57,7 +61,20 @@
 
                     </div>
 
-                    <div class="uk-margin">
+                    <div class="uk-margin uk-text-right">
+
+                        <button type="clear" class="uk-button uk-button-primary">Clear</button>
+
+                    </div>
+
+                            </div>
+
+                        </div>
+                        <div class="uk-width-1-2">
+
+                            <div class="uk-card uk-card-default uk-card-body">
+
+                                <div class="uk-card-title uk-margin-bottom">Preview</div>
 
                         <div class="uk-text-block uk-text-bold"
                          id="dv-post-output"></div>
@@ -66,10 +83,7 @@
 
                     </div>
 
-                    <div class="uk-margin uk-text-right">
-
-                        <button type="clear" class="uk-button uk-button-primary">Clear</button>
-
+                        </div>
                     </div>
 
                 </div>
