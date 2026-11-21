@@ -1,0 +1,131 @@
+<!-- UIkit CSS -->
+<link rel="stylesheet" href="../public/uikit/css/uikit.min.css" />
+
+<link rel="stylesheet" href="../public/styles.css" type="text/css" />
+
+<!-- UIkit JS -->
+<script src="../public/uikit/js/uikit.min.js"></script>
+
+<script src="../public/uikit/js/uikit-icons.min.js"></script>
+
+<form method="get">
+  <div class="uk-padding">
+    <div uk-grid>
+      <div class="uk-width-1-3">
+        <div class="uk-margin">
+          <label for="txt-telurl" class="uk-form-label">URL to Share</label>
+
+          <input
+            type="url"
+            name="txt-telurl"
+            id="txt-telurl"
+            class="uk-input"
+            placeholder="eg https://www.example.com"
+            onkeyup="createTelegramLink()"
+            required
+            value="https://www.example.com"
+          />
+        </div>
+
+        <div class="uk-margin">
+          <label for="txt-body" class="uk-form-label">Text (optional)</label>
+
+          <textarea
+            name="txt-teltext"
+            id="txt-teltext"
+            class="uk-textarea"
+            placeholder="your message body"
+            rows="8"
+            onkeyup="createTelegramLink()"
+          >
+Generate a Telegram chat link with this form. Use the preview to test your output. It happens as you type. Try it.</textarea
+          >
+        </div>
+
+        <div class="uk-margin uk-text-right">
+          <button type="clear" class="uk-button uk-button-primary">
+            Clear
+          </button>
+        </div>
+      </div>
+
+      <div class="uk-width-2-3">
+        <div>
+          <div class="uk-card-title uk-margin-bottom">Preview</div>
+
+          <div uk-grid>
+            <div class="uk-width-1-2">
+              <div class="uk-margin" id="dv-telqr"></div>
+            </div>
+
+            <div class="uk-width-1-2">
+              <div
+                class="uk-text-block uk-text-bold uk-margin"
+                id="dv-tellabel"
+              ></div>
+
+              <div class="uk-hidden" id="dv-telcopy"></div>
+
+              <div class="uk-text-block uk-text-bold" id="dv-tellink"></div>
+
+              <p>
+                <a
+                  href="#"
+                  id="btn-telegram-test"
+                  target="_blank"
+                  class="uk-text-bold"
+                  >Test</a
+                >
+                |
+                <a
+                  href="#"
+                  class="uk-text-bold"
+                  id="btn-telegram-copy"
+                  data-val=""
+                  onclick="initCopyToClipboard()"
+                  >Copy to Clipboard</a
+                >
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<script src="../public/qrcodejs/jquery.min.js" type="text/javascript"></script>
+
+<script src="../public/qrcodejs/qrcode.min.js" type="text/javascript"></script>
+
+<script src="../public/scripts.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  createTelegramLink();
+
+  function createTelegramLink() {
+    var url = document.getElementById("txt-telurl").value;
+
+    var body = document.getElementById("txt-teltext").value;
+
+    //https://telegram.me/share/url?url=https%3A%2F%2Fwww.example.com&text=Some%20thingy%20message%20here.
+
+    var walink =
+      "https://telegram.me/share/url/?url=" +
+      encodeURI(url) +
+      "&text=" +
+      encodeURI(body);
+
+    generateQRCode(walink, "dv-telqr", "dv-tellabel", 360);
+
+    document.getElementById("dv-telcopy").innerHTML = walink;
+
+    document.getElementById("btn-telegram-test").setAttribute("href", walink);
+  }
+
+  function initCopyToClipboard() {
+    var content = document.getElementById("dv-telcopy").innerHTML;
+
+    copyToClipboard(content);
+  }
+</script>
