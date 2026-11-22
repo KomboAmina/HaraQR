@@ -1,0 +1,126 @@
+<!-- UIkit CSS -->
+<link rel="stylesheet" href="../public/uikit/css/uikit.min.css" />
+
+<link rel="stylesheet" href="../public/styles.css" type="text/css" />
+
+<!-- UIkit JS -->
+<script src="../public/uikit/js/uikit.min.js"></script>
+
+<script src="../public/uikit/js/uikit-icons.min.js"></script>
+
+<form method="get">
+  <div>
+    <div uk-grid>
+      <div class="uk-width-1-2">
+        <div class="uk-card uk-card-default uk-card-body">
+          <div class="uk-margin">
+            <label for="txt-thtext" class="uk-form-label">Post Text</label>
+
+            <textarea
+              name="txt-thtext"
+              id="txt-thtext"
+              class="uk-textarea"
+              placeholder="your post body"
+              rows="8"
+              onkeyup="createThreadsLink()"
+            >
+Use this form to generate an email message link. Check the preview: everything works as you type.</textarea
+            >
+          </div>
+
+          <div class="uk-margin">
+            <label for="txt-thurl" class="uk-form-label">URL to Share</label>
+
+            <input
+              type="url"
+              name="txt-thurl"
+              id="txt-thurl"
+              class="uk-input"
+              placeholder="eg https://www.example.com"
+              onkeyup="createThreadsLink()"
+              required
+              value="https://www.example.com"
+            />
+          </div>
+
+          <div class="uk-margin uk-text-right">
+            <button type="clear" class="uk-button uk-button-primary">
+              Clear
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="uk-width-1-2">
+        <div class="uk-card uk-card-default uk-card-body">
+          <div class="uk-card-title">Preview</div>
+
+          <div
+            class="uk-margin uk-text-bold uk-text-block"
+            id="dv-threads-output"
+          ></div>
+
+          <p>
+            <a
+              href="#"
+              id="btn-threads-test"
+              target="_blank"
+              class="uk-text-bold"
+              >Test</a
+            >
+            |
+            <a
+              href="#"
+              class="uk-text-bold"
+              id="btn-threads-copy"
+              data-val=""
+              onclick="initCopyToClipboard()"
+              >Copy to Clipboard</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<script src="../public/qrcodejs/jquery.min.js" type="text/javascript"></script>
+
+<script src="../public/qrcodejs/qrcode.min.js" type="text/javascript"></script>
+
+<script src="../public/scripts.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  createThreadsLink();
+  //https://www.threads.com/intent/post?text=Some%20example%20text.&url=https%3A%2F%2Fwww.example.com
+
+  function createThreadsLink() {
+    var url = document.getElementById("txt-thurl").value;
+
+    var text = document.getElementById("txt-thtext").value;
+
+    var threadslink =
+      "https://www.threads.com/intent/post/?text=" +
+      encodeURI(text) +
+      "&url=" +
+      encodeURI(url);
+
+    document.getElementById("dv-threads-output").innerHTML = threadslink;
+
+    document
+      .getElementById("btn-threads-test")
+      .setAttribute("href", threadslink);
+
+    document
+      .getElementById("btn-threads-copy")
+      .setAttribute("data-val", threadslink);
+  }
+
+  function initCopyToClipboard() {
+    var content = document
+      .getElementById("btn-threads-copy")
+      .getAttribute("data-val");
+
+    copyToClipboard(content);
+  }
+</script>
