@@ -143,13 +143,17 @@ Use this form to generate an email message link. Check the preview: everything w
 
     var recipient = document.getElementById("txt-recipient").value;
 
+    recipient = removeCharacters(" ", recipient);
+
     var cc = document.getElementById("txt-cc").value;
 
     var bcc = document.getElementById("txt-bcc").value;
 
     var body = document.getElementById("txt-body").value;
 
-    var validbody = removeCharacters(body, " ");
+    var validbody = removeCharacters(" ", body);
+
+    validbody = stripHTML(validbody);
 
     var alert = "<ol>";
 
@@ -158,6 +162,11 @@ Use this form to generate an email message link. Check the preview: everything w
     if (subject.length > 255) {
       verdict = false;
       alert = alert + "<li>Subject must be less than 256 characters.</li>";
+    }
+
+    if (subject.length < 4) {
+      verdict = false;
+      alert = alert + "<li>Subject must be at least 3 characters long.</li>";
     }
 
     if (recipient.length == 0) {
@@ -185,7 +194,10 @@ Use this form to generate an email message link. Check the preview: everything w
         "body=" +
         encodeURI(body);
     } else {
-      var mailink = "<h4>Error(s):</h4>" + alert;
+      var mailink =
+        "<div class='uk-background-muted uk-padding'><h4>Cannot create preview:</h4>" +
+        alert +
+        "</div>";
     }
 
     document.getElementById("dv-email-output").innerHTML = mailink;

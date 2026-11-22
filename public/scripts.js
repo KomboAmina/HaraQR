@@ -80,3 +80,11 @@ function removeCharacters(targetCharacter, targetString){
     return targetString.replaceAll(targetCharacter, '');
 
 }
+
+function stripHTML(html) {
+
+  var doc = new DOMParser().parseFromString(html, 'text/html');
+
+  return doc.body.textContent || "";
+
+}

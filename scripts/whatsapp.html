@@ -107,15 +107,48 @@ Generate a WhatsApp chat link with this form. Use the preview to test your outpu
   function createWhatsAppLink() {
     var number = document.getElementById("txt-number").value;
 
+    var alert = "<ol>";
+
+    var verdict = true;
+
     var body = document.getElementById("txt-body").value;
 
     if (number.length > 0 && number[0] == "+") {
       number = number.slice(1);
     }
 
-    var walink = "https://wa.me/" + number + "/" + encodeURI(body);
+    if (number.length < 1) {
+      verdict = false;
 
-    generateQRCode(walink, "dv-qr", "dv-label", 360);
+      alert = alert + "<li>Phone number is required.</li>";
+    }
+
+    if (number.length > 15) {
+      verdict = false;
+
+      alert =
+        alert + "<li>Phone number must be less than 15 characters long.</li>";
+    }
+
+    if (body.length < 1) {
+      verdict = false;
+
+      alert = alert + "<li>Message is required.</li>";
+    }
+
+    alert = alert + "</ol>";
+
+    if (verdict) {
+      var walink = "https://wa.me/" + number + "/" + encodeURI(body);
+
+      generateQRCode(walink, "dv-qr", "dv-label", 360);
+    } else {
+      var walink =
+        "<div class='uk-padding uk-background-muted'><h4>Cannot create preview:</h4>" +
+        alert +
+        "</div>";
+      document.getElementById("dv-qr").innerHTML = walink;
+    }
 
     document.getElementById("dv-copy").innerHTML = walink;
 

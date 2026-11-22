@@ -11,7 +11,7 @@
   <div>
     <!--form-->
     <form method="get" class="uk-grid" uk-grid>
-      <div class="uk-width-1-3">
+      <div class="uk-width-1-3@m uk-width-1-1@s">
         <div class="uk-card uk-card-default uk-card-body">
           <textarea
             name="txtinput"
@@ -39,7 +39,7 @@ Welcome to HaraQR. This is default QR code data.</textarea
         </div>
       </div>
 
-      <div class="uk-width-1-3">
+      <div class="uk-width-1-3@m uk-width-1-1@s">
         <div class="uk-card uk-card-default uk-card-body">
           <p class="uk-text-body">
             Right-click and choose "Copy image" or "Save image as" to save the
@@ -75,9 +75,32 @@ Welcome to HaraQR. This is default QR code data.</textarea
 
     var qrdiv = document.getElementById("qr-output");
 
+    var verdict = true;
+
+    var alert = "<ol>";
+
+    if (qrcontent.length < 1) {
+      verdict = false;
+      alert = alert + "<li>Data is empty.</li>";
+    }
+
+    if (qrcontent.length > 7089) {
+      verdict = false;
+      alert = alert + "<li>Data cannot be longer than 7089 characters.</li>";
+    }
+
+    alert = alert + "</ol>";
+
     initCharacterCount();
 
-    generateQRCode(qrcontent, "qr-output", "qr-label", 384);
+    if (verdict) {
+      generateQRCode(qrcontent, "qr-output", "qr-label", 384);
+    } else {
+      qrdiv.innerHTML =
+        "<div class='uk-background-muted uk-padding'><h4>Cannot create preview:</h4>" +
+        alert +
+        "</div>";
+    }
   }
 
   function initCharacterCount() {
