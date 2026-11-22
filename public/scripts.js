@@ -88,3 +88,11 @@ function stripHTML(html) {
   return doc.body.textContent || "";
 
 }
+
+function clearForm(formID){
+
+    var form = document.getElementById(formID);
+
+    form.reset();
+
+}
