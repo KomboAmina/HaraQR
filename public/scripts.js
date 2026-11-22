@@ -35,11 +35,17 @@ function copyToClipboard(copyContent){
 
 }
 
-function displayCharacterCount(characterString, labelDiv){
+function displayCharacterCount(characterString, labelDiv, maxLength = 0){
 
   var labeldiv = document.getElementById(labelDiv);
 
   labeldiv.innerHTML = characterString.length+ "";
+
+  if(maxLength > 0){
+
+    labeldiv.innerHTML = characterString.length + " / " + maxLength;
+
+  }
 
 }
 
@@ -66,5 +72,11 @@ function isValidURL(checkString){
     catch(err){
         return false;
     }
+
+}
+
+function removeCharacters(targetCharacter, targetString){
+
+    return targetString.replaceAll(targetCharacter, '');
 
 }
